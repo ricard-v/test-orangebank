@@ -13,7 +13,18 @@ class GetJetBrainReposRepositoryImpl @Inject constructor(
     override suspend fun getJetBrainRepos(page: Int): Result<List<JetBrainRepoEntity>> {
         return try {
             val data = remoteDataSource.getJetBrainRepos(page = page)
-            Result.success(data)
+            Result.success(
+                data.map { repo ->
+                    JetBrainRepoEntity(
+                        repo.id,
+                        repo.fullName,
+                        repo.description,
+                        repo.forks ?: 0,
+                        repo.openIssues ?: 0,
+                        repo.watchers ?: 0,
+                    )
+                }
+            )
         } catch (re: RemoteException) {
             Result.failure(re)
         }
