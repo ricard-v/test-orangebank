@@ -2,6 +2,8 @@ package com.mackosoft.testorangebank.getjetbrainrepos.data.datasources
 
 import com.mackosoft.testorangebank.exceptions.RemoteException
 import com.mackosoft.testorangebank.getjetbrainrepos.data.models.JetBrainRepoModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 interface GetJetBrainReposRemoteDataSource {
@@ -17,7 +19,9 @@ class GetJetBrainReposRemoteDataSourceImpl @Inject constructor(
 
     override suspend fun getJetBrainRepos(page: Int): List<JetBrainRepoModel> {
         try {
-            return api.getJetBrainReposPage(page = page)
+            return withContext(Dispatchers.IO) {
+                api.getJetBrainReposPage(page = page)
+            }
         } catch (e: Exception) {
             throw RemoteException(errorMessage = e.localizedMessage ?: "unknown error")
         }
