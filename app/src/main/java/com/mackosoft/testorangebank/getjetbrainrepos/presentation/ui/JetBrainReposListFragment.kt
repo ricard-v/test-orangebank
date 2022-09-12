@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.mackosoft.testorangebank.R
 import com.mackosoft.testorangebank.databinding.FragmentJetBrainReposListBinding
+import com.mackosoft.testorangebank.getjetbrainrepos.presentation.viewmodel.JetBrainReposEvent
 import com.mackosoft.testorangebank.getjetbrainrepos.presentation.viewmodel.JetBrainReposListState
 import com.mackosoft.testorangebank.getjetbrainrepos.presentation.viewmodel.JetBrainReposListViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,6 +24,11 @@ class JetBrainReposListFragment: Fragment(R.layout.fragment_jet_brain_repos_list
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.jetBrainReposListState.collect(::handleState)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.addEvent(JetBrainReposEvent.GetJetBrainRepos)
     }
 
     private fun handleState(state: JetBrainReposListState) {
