@@ -14,3 +14,4 @@ Test pour le recrutement chez Orange BANK.
 - Injection des dépendances avec Hilt
 - Material Design (via Material Components)
 - Couche Réseau: okhttp + Retrofit2 + Gson
+- Le repo est configuré en GitFlow.
