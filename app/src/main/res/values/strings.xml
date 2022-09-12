@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TestOrangeBank</string>
+
+    <!-- JetBrainRepos -->
+    <string name="empty_description">Unavailable description</string>
+    <string name="forks_count">forks: %1$d</string>
+    <string name="open_issues_count">open issues: %1$d</string>
+    <string name="watchers_count">watchers: %1$d</string>
 </resources>
